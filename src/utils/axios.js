@@ -6,7 +6,7 @@ import Router from '../route'
 let baseUrl = process.env.NODE_ENV == 'development' ? '/api': '';
 let configs = {
     timeout: 10000,
-    api: baseUrl
+    api: '/api'
 }
 
 // 添加请求拦截器
