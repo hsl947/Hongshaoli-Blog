@@ -46,13 +46,12 @@ module.exports = {
     hotOnly: false,
     open: true, //配置自动启动浏览器
     proxy: {
-      '/sapi': {
-          target: 'http://zm.xinjuhao.net',
-          changeOrigin: true,
-          ws: true,
-          pathRewrite: {
-            '^/sapi': ''
-          }
+      '/api': {
+        target: 'http://localhost:3030',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
       }
     }
   },
