@@ -22,7 +22,8 @@
       </mu-menu>
     </mu-appbar>
     <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
-      <mu-load-more @refresh="refresh" :refreshing="refreshing" :loading="loading" @load="load" :loaded-all="finished">
+       <!-- @refresh="refresh" :refreshing="refreshing" -->
+      <mu-load-more :loading="loading" @load="load" :loaded-all="finished">
         <mu-list textline="three-line">
           <mu-sub-header>今天</mu-sub-header>
           <mu-list-item button :to="'detail?_id='+item._id" v-for="item in testData" :key="item._id">
