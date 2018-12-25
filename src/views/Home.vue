@@ -21,47 +21,20 @@
         </mu-list>
       </mu-menu>
     </mu-appbar>
-    <mu-paper :z-depth="1" class="demo-list-wrap">
-      <mu-list textline="three-line">
-        <mu-sub-header>今天</mu-sub-header>
-        <mu-list-item button to="detail">
-          <mu-list-item-content>
-            <mu-list-item-title>这个周末一起吃饭么?</mu-list-item-title>
-            <mu-list-item-sub-title>
-              周末要来你这里出差，要不要一起吃个饭呀，实在编不下去了,哈哈哈哈哈哈
-            </mu-list-item-sub-title>
-          </mu-list-item-content>
-        </mu-list-item>
-        <mu-divider></mu-divider>
-        <mu-list-item button to="detail">
-          <mu-list-item-content>
-            <mu-list-item-title>Alex Qin</mu-list-item-title>
-            <mu-list-item-sub-title>
-              我们去看电影，最近有部烂片上映，又有吐槽的了
-            </mu-list-item-sub-title>
-          </mu-list-item-content>
-        </mu-list-item>
-        <mu-divider></mu-divider>
-        <mu-list-item button to="detail">
-          <mu-list-item-content>
-            <mu-list-item-title>LOL</mu-list-item-title>
-            <mu-list-item-sub-title>
-              周末一起 LOL
-            </mu-list-item-sub-title>
-          </mu-list-item-content>
-        </mu-list-item>
-        <mu-divider></mu-divider>
-        <mu-list-item button to="detail">
-          <mu-list-item-content>
-            <mu-list-item-title>LOL</mu-list-item-title>
-            <mu-list-item-sub-title>
-              实在编不下去，这就是个demo
-            </mu-list-item-sub-title>
-          </mu-list-item-content>
-        </mu-list-item>
-      </mu-list>
+    <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
+      <mu-load-more @refresh="refresh" :refreshing="refreshing" :loading="loading" @load="load" :loaded-all="finished">
+        <mu-list textline="three-line">
+          <mu-sub-header>今天</mu-sub-header>
+          <mu-list-item button :to="'detail?_id='+item._id" v-for="item in testData" :key="item._id">
+            <mu-list-item-content>
+              <mu-list-item-title v-text="item.title"></mu-list-item-title>
+              <mu-list-item-sub-title v-text="item.description"></mu-list-item-sub-title>
+            </mu-list-item-content>
+          </mu-list-item>
+        </mu-list>
+      </mu-load-more>
+      <p class="no-data" v-if="finished">- 我也是有底线的 -</p>
     </mu-paper>
-    <p>测试node接口数据---{{JSON.stringify(testData)}}</p>
     <mu-drawer :open.sync="open" :docked="false" :left="true">
       <mu-list>
         <mu-list-item button>
@@ -84,27 +57,68 @@ export default {
   data() {
     return {
       open: false,
-      testData: {}
+      testData: [],
+      refreshing: false,
+      loading: false,
+      finished: false,
+      formData: {
+        skip: 0,
+        limit: 10
+      }
     }
   },
   components: {
 
   },
   methods: {
-
+    getData() {
+      this.$axios.post('/test', this.formData).then((_data)=> {
+          if(_data.data.length == 0){
+            this.finished = true;
+            return;
+          }
+          this.testData = this.testData.concat(_data.data);
+          let timer = setTimeout(() => {
+            this.$progress.done();
+            this.loading = false;
+            this.refreshing = false;
+            clearTimeout(timer);
+          }, 1000);
+      });
+    },
+    refresh () {
+      this.testData = [];
+      this.formData = {
+        skip: 0,
+        limit: 10
+      };
+      this.refreshing = true;
+      this.$refs.container.scrollTop = 0;
+      this.getData();
+    },
+    load () {
+      this.formData.skip += this.formData.limit,
+      this.loading = true;
+      this.getData();
+    }
   },
   created() {
     this.$progress.start();
   },
   mounted() {
-    this.$progress.done();
-    this.$axios.post('/test').then((_data)=> {
-        this.testData = _data;
-    });
+    this.getData();
   }
 };
 </script>
 
 <style scoped>
-
+  .mu-list>li{
+    border-bottom: solid 1px rgba(0,0,0,.12);
+  }
+  .no-data{
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 0;
+  }
 </style>

@@ -4,9 +4,10 @@
         <mu-button icon slot="left" onclick="window.history.back()">
           <mu-icon value="arrow_back"></mu-icon>
         </mu-button>
-        <span>Detail</span>
+        <span v-text="testData.title"></span>
       </mu-appbar>
-      <span>Details...</span>
+      <p class="time">{{testData.time | formatTime}}</p>
+      <p class="content" v-text="testData.content"></p>
   </div>
 </template>
 
@@ -15,7 +16,13 @@ export default {
   name: "login",
   data() {
     return {
-
+      testData: {}
+    }
+  },
+  filters: {
+   formatTime: (input)=> {
+       var date = new Date(input);
+       return  date.toLocaleString();
     }
   },
   methods: {
@@ -25,11 +32,25 @@ export default {
     this.$progress.start();
   },
   mounted() {
-    this.$progress.done();
+    let param = this.$route.query;
+    this.$axios.post('/test', param).then((_data)=> {
+        this.$progress.done();
+        this.testData = _data.data[0];
+    });
   }
 };
 </script>
 
 <style scoped>
-
+  .time{
+    font-size: 16px;
+    color: #999;
+    line-height: 32px;
+    padding: 0 10px;
+  }
+  .content{
+    padding: 0 10px;
+    font-size: 20px;
+    line-height: 28px;
+  }
 </style>

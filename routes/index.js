@@ -1,12 +1,26 @@
 var express = require('express');
 var router = express.Router();
+var blog = require('../db/front')
 
-/* GET home page. */
-// router.get('/', function (req, res, next) {
-//     res.render('index', { title: 'Express' });
-// });
+router.get('/test', function (req, res, next) {
+    res.send('test api ok!')
+});
 router.post('/test', function (req, res, next) {
-    res.json({ id: 1, name: "张三" })
+    let param = {};
+    if (req.body._id){
+        param._id = req.body._id;
+    }
+    blog.find(param).skip(+req.body.skip).limit(+req.body.limit).then(_data => {
+        res.json({
+            status: 200,
+            message: '查询成功',
+            data: _data,
+            skip: req.body.skip,
+            limit: req.body.limit
+        })
+    }).catch(err => {
+        console.log(err);
+    });
 });
 
 module.exports = router;
