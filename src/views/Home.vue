@@ -21,9 +21,9 @@
         </mu-list>
       </mu-menu>
     </mu-appbar>
-    <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
-       <!-- @refresh="refresh" :refreshing="refreshing" -->
-      <mu-load-more :loading="loading" @load="load" :loaded-all="finished">
+    <!-- @refresh="refresh" :refreshing="refreshing" -->
+    <mu-load-more :loading="loading" @load="load" :loaded-all="finished">
+      <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
         <mu-list textline="three-line">
           <mu-sub-header>今天</mu-sub-header>
           <mu-list-item button :to="'detail?_id='+item._id" v-for="item in testData" :key="item._id">
@@ -33,9 +33,9 @@
             </mu-list-item-content>
           </mu-list-item>
         </mu-list>
-      </mu-load-more>
-      <p class="no-data" v-if="finished">- 我也是有底线的 -</p>
-    </mu-paper>
+        <p class="no-data" v-if="finished">- 我也是有底线的 -</p>
+      </mu-paper>
+    </mu-load-more>
     <mu-drawer :open.sync="open" :docked="false" :left="true">
       <mu-list>
         <mu-list-item button>
@@ -114,6 +114,9 @@ export default {
 </script>
 
 <style scoped>
+  .mu-list{
+    padding-bottom: 0;
+  }
   .mu-list>li{
     border-bottom: solid 1px rgba(0,0,0,.12);
   }
