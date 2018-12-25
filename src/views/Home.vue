@@ -63,7 +63,7 @@ export default {
       finished: false,
       formData: {
         skip: 0,
-        limit: 10
+        limit: 20
       }
     }
   },
@@ -90,8 +90,9 @@ export default {
       this.testData = [];
       this.formData = {
         skip: 0,
-        limit: 10
+        limit: 20
       };
+      this.finished = false;
       this.refreshing = true;
       this.$refs.container.scrollTop = 0;
       this.getData();
