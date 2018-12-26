@@ -11,6 +11,9 @@ import 'muse-ui-progress/dist/muse-ui-progress.css';
 import NProgress from 'muse-ui-progress';
 Vue.use(NProgress, {color: 'deepOrange500'});
 
+import Loading from 'muse-ui-loading';
+Vue.use(Loading);
+
 //如果是开发环境，启用组件
 if (process.env.NODE_ENV == "development"){
   //针对手机网页的前端开发者调试面板

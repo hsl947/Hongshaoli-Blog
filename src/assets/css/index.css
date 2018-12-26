@@ -17,3 +17,23 @@
 .mu-list{
     padding: 0;
 }
+.mu-appbar{
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+.pt56{
+    padding-top: 56px!important;
+}
+.mu-loading-wrap{
+    height: 100%;
+}
+.mu-circular-progress{
+    width: 48px;
+    height: 48px;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}

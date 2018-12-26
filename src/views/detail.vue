@@ -6,7 +6,7 @@
         </mu-button>
         <span v-text="testData.title"></span>
       </mu-appbar>
-      <p class="time">{{testData.time | formatTime}}</p>
+      <p class="time pt56">{{testData.time | formatTime}}</p>
       <p class="content" v-html="testData.content"></p>
   </div>
 </template>
@@ -53,6 +53,7 @@ export default {
     color: #999;
     line-height: 30px;
     padding: 10px;
+    margin-top: 10px;
   }
   .content{
     padding: 0 10px;

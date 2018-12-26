@@ -22,7 +22,7 @@
       </mu-menu>
     </mu-appbar>
     <!-- @refresh="refresh" :refreshing="refreshing" -->
-    <mu-load-more :loading="loading" @load="load" :loaded-all="finished">
+    <mu-load-more class="pt56" :loading="loading" @load="load" :loaded-all="finished">
       <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
         <mu-list textline="three-line">
           <mu-sub-header>今天</mu-sub-header>
@@ -55,6 +55,7 @@
         <i class="mu-icon  material-icons" style="user-select: none;">arrow_upward</i>
       </div>
     </mu-button>
+    <div v-if="fullLoading" v-loading="true" data-mu-loading-overlay-color="rgba(255, 255, 255, 0.8)" style="height: 100%;position: fixed;width: 100%;top: 0;bottom: 0;"></div>
   </div>
 </template>
 
@@ -71,7 +72,8 @@ export default {
       formData: {
         skip: 0,
         limit: 20
-      }
+      },
+      fullLoading: true
     }
   },
   components: {
@@ -89,6 +91,7 @@ export default {
             this.$progress.done();
             this.loading = false;
             this.refreshing = false;
+            this.fullLoading = false;
             clearTimeout(timer);
           }, 1000);
       });
@@ -114,6 +117,7 @@ export default {
     this.$progress.start();
   },
   mounted() {
+    // this.fullLoading.close();
     this.getData();
 
     var timer1, timer2; 

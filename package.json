@@ -16,6 +16,7 @@
         "fastclick": "^1.0.6",
         "mongoose": "^5.4.0",
         "muse-ui": "^3.0.1",
+        "muse-ui-loading": "^0.2.0",
         "muse-ui-progress": "^0.1.0",
         "nodemon": "^1.18.9",
         "serve-favicon": "^2.5.0",
