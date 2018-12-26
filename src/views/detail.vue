@@ -7,7 +7,7 @@
         <span v-text="testData.title"></span>
       </mu-appbar>
       <p class="time">{{testData.time | formatTime}}</p>
-      <p class="content" v-text="testData.content"></p>
+      <p class="content" v-html="testData.content"></p>
   </div>
 </template>
 
@@ -21,8 +21,14 @@ export default {
   },
   filters: {
    formatTime: (input)=> {
-       var date = new Date(input);
-       return  date.toLocaleString();
+       var d = new Date(input);
+       var year = d.getFullYear();
+       var month = d.getMonth() + 1;
+       var day = d.getDate() <10 ? '0' + d.getDate() : '' + d.getDate();
+       var hour = d.getHours() <10 ? '0' + d.getHours() : '' + d.getHours();
+       var minutes = d.getMinutes() <10 ? '0' + d.getMinutes() : '' + d.getMinutes();
+       var seconds = d.getSeconds() <10 ? '0' + d.getSeconds() : '' + d.getSeconds();
+       return  year+ '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
     }
   },
   methods: {
@@ -33,9 +39,9 @@ export default {
   },
   mounted() {
     let param = this.$route.query;
-    this.$axios.post('/test', param).then((_data)=> {
+    this.$axios.post('/list/detail', param).then((_data)=> {
         this.$progress.done();
-        this.testData = _data.data[0];
+        this.testData = _data.data;
     });
   }
 };
@@ -45,8 +51,8 @@ export default {
   .time{
     font-size: 16px;
     color: #999;
-    line-height: 32px;
-    padding: 0 10px;
+    line-height: 30px;
+    padding: 10px;
   }
   .content{
     padding: 0 10px;

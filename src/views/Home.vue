@@ -49,6 +49,12 @@
         </mu-list-item>
       </mu-list>
     </mu-drawer>
+    <mu-button id="toTop" button class="mu-button mu-fab-button mu-inverse">
+      <div class="mu-button-wrapper">
+        <div class="mu-ripple-wrapper"></div>
+        <i class="mu-icon  material-icons" style="user-select: none;">arrow_upward</i>
+      </div>
+    </mu-button>
   </div>
 </template>
 
@@ -73,7 +79,7 @@ export default {
   },
   methods: {
     getData() {
-      this.$axios.post('/test', this.formData).then((_data)=> {
+      this.$axios.post('/list', this.formData).then((_data)=> {
           if(_data.data.length == 0){
             this.finished = true;
             return;
@@ -109,6 +115,28 @@ export default {
   },
   mounted() {
     this.getData();
+
+    var timer1, timer2; 
+    var toTop = document.getElementById("toTop");
+    window.onscroll = function () { 
+      if (timer1) clearTimeout(timer1);
+      timer1 = setTimeout(function() {
+          let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          if (scrollTop > 300) { 
+            toTop.style.bottom = "16px"; 
+          } 
+          else { 
+            toTop.style.bottom = "-80px"; 
+          } 
+      }, 300);
+    }
+    toTop.onclick = function(){
+      if (timer2) clearTimeout(timer2);
+      timer2 = setTimeout(function() {
+          window.scrollTo(0, 0);
+          clearInterval(timer1);
+      }, 50);
+    }
   }
 };
 </script>
@@ -122,5 +150,17 @@ export default {
     font-size: 14px;
     text-align: center;
     padding: 10px 0;
+  }
+  #toTop{
+    user-select: none; 
+    outline: none; 
+    -webkit-appearance: none; 
+    background-color: #2196f3; 
+    position: fixed; 
+    right: 16px; 
+    bottom: -80px; 
+    z-index: 101;
+    min-width:56px;
+    transition: all .3s;
   }
 </style>
