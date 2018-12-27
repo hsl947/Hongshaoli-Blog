@@ -4,45 +4,41 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  mode: "hash",
-  routes: [
-    {
-      path: "/",
-      name: 'index',
-      component: resolve => require(["../views/Home"], resolve),
-      meta: {
-        index: 0, //页面的深度，来判断使用的过渡动画
-        title: '首页'
-      },
-      children: []
-    },
-    {
-      path: "/detail",
-      name: 'detail',
-      component: resolve => require(["../views/detail"], resolve),
-      meta: {
-        index: 1,
-        title: '详情'
-      },
-      children: []
-    },
-    {
-      path: "/register",
-      name: 'register',
-      component: resolve => require(["../views/register"], resolve),
-      meta: {
-        index: 2,
-        title: '注册',
-        // requireAuth: true
-      },
-      children: []
-    }
-  ]
+    mode: "hash",
+    routes: [{
+            path: "/",
+            name: 'index',
+            component: resolve => require(["../views/front/index"], resolve),
+            meta: {
+                title: '首页'
+            },
+            children: []
+        },
+        {
+            path: "/detail",
+            name: 'detail',
+            component: resolve => require(["../views/front/detail"], resolve),
+            meta: {
+                title: '详情',
+                // requireAuth: true
+            },
+            children: []
+        },
+        {
+            path: "/admin",
+            name: 'admin_index',
+            component: resolve => require(["../views/admin/index"], resolve),
+            meta: {
+                title: '后台admin首页'
+            },
+            children: []
+        }
+    ]
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title;
-  next();
+    document.title = to.meta.title;
+    next();
 });
 
 export default router;
