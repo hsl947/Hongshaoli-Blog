@@ -1,13 +1,13 @@
 <template>
   <div>
       <mu-container>
-        <mu-button color="success">添加</mu-button>
+        <mu-button @click="add" color="success">添加</mu-button>
         <mu-paper :z-depth="1">
           <mu-data-table stripe :columns="columns" :data="testData">
             <template slot-scope="scope">
               <td class="is-center">{{scope.$index+1}}</td>
-              <td class="is-center">{{scope.row.title}}</td>
-              <td class="is-center">{{scope.row.description}}</td>
+              <td class="is-center">{{scope.row.title.substr(0, 14)}}</td>
+              <td class="is-center">{{scope.row.description.substr(0, 14)}}</td>
               <td class="is-center">{{scope.row.time | formatTime}}</td>
               <td class="is-center"><mu-button color="success">编辑</mu-button></td>
             </template>
@@ -62,6 +62,11 @@ export default {
       this.formData.page = page;
       this.testData = [];
       this.getData();
+    },
+    add() {
+      this.$router.push({
+        path: '/add'
+      });
     }
   },
   created() {
@@ -84,7 +89,7 @@ export default {
   .mu-pagination{
     padding: 10px;
     position: fixed;
-    bottom: 30px;
+    bottom: 0;
   }
   .container{
     padding-bottom: 50px;

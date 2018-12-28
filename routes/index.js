@@ -42,11 +42,12 @@ router.post('/list/detail', function(req, res, next) {
         console.log(err);
     });
 });
-var all = 0;
-blog.count({}, (err, count) => { all = count; });
 
 //admin文章列表数据
 router.post('/admin/list', function(req, res, next) {
+    var all = 0;
+    blog.count({}, (err, count) => { all = count; });
+
     let page = req.body.page;
     let skip = (page - 1) * req.body.limit;
     blog.find({}, { __v: 0 }).skip(skip).limit(+req.body.limit).then(_data => {
@@ -61,6 +62,17 @@ router.post('/admin/list', function(req, res, next) {
     }).catch(err => {
         console.log(err);
     });
+});
+
+//admin文章列表数据
+router.post('/admin/add', function(req, res, next) {
+    var data = req.body;
+    let Blog = new blog(data);
+    Blog.save();
+    res.json({
+        status: 200,
+        message: '添加成功'
+    })
 });
 
 module.exports = router;

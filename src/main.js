@@ -3,6 +3,11 @@ import App from "./App.vue";
 import router from "./route";
 import axios from './utils/axios';
 
+// require styles
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';
 Vue.use(MuseUI);
@@ -13,6 +18,9 @@ Vue.use(NProgress, { color: 'deepOrange500' });
 
 import Loading from 'muse-ui-loading';
 Vue.use(Loading);
+
+import Toast from 'muse-ui-toast';
+Vue.use(Toast);
 
 //如果是开发环境，启用组件
 if (process.env.NODE_ENV == "development") {

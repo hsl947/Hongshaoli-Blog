@@ -32,6 +32,14 @@ const router = new VueRouter({
                 title: '后台admin首页'
             },
             children: []
+        },
+        {
+            path: "/add",
+            name: 'blog_add',
+            component: resolve => require(["../views/admin/add"], resolve),
+            meta: {
+                title: '添加'
+            }
         }
     ]
 });
