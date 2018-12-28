@@ -1,6 +1,7 @@
 <template>
   <div>
       <mu-container>
+        <mu-button color="success">添加</mu-button>
         <mu-paper :z-depth="1">
           <mu-data-table stripe :columns="columns" :data="testData">
             <template slot-scope="scope">
@@ -8,7 +9,7 @@
               <td class="is-center">{{scope.row.title}}</td>
               <td class="is-center">{{scope.row.description}}</td>
               <td class="is-center">{{scope.row.time | formatTime}}</td>
-              <td class="is-center">按钮</td>
+              <td class="is-center"><mu-button color="success">编辑</mu-button></td>
             </template>
           </mu-data-table>
         </mu-paper>    
@@ -29,7 +30,7 @@ export default {
     return {
       formData: {
         page: 1,
-        limit: 10
+        limit: 8
       },
       columns: [
           { title: '序号', name: 'id', width: 80, align: 'center' },
@@ -87,5 +88,8 @@ export default {
   }
   .container{
     padding-bottom: 50px;
+  }
+  .mu-button{
+    margin: 10px 0;
   }
 </style>
