@@ -96,4 +96,7 @@ export default {
   .ql-container{
     height: 300px;
   }
+  .ql-container.ql-snow{
+    border: 1px solid #ccc;
+  }
 </style>
