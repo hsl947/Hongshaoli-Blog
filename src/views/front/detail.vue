@@ -7,7 +7,9 @@
         <span v-text="testData.title"></span>
       </mu-appbar>
       <p class="time pt56">{{testData.time | formatTime}}</p>
-      <p class="content" v-html="testData.content"></p>
+      <div class="ql-container ql-snow">
+        <div class="ql-editor" v-html="testData.content"></div>
+      </div>
   </div>
 </template>
 
@@ -35,7 +37,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
   .time{
     font-size: 16px;
     color: #999;
@@ -43,9 +45,9 @@ export default {
     padding: 10px;
     margin-top: 10px;
   }
-  .content{
-    padding: 0 10px;
-    font-size: 20px;
+  .ql-container.ql-snow{
+    font-size: 16px;
     line-height: 28px;
+    border: none;
   }
 </style>
