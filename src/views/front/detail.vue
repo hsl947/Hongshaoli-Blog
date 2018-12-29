@@ -6,7 +6,7 @@
         </mu-button>
         <span v-text="testData.title"></span>
       </mu-appbar>
-      <p class="time pt56">{{testData.time | formatTime}}</p>
+      <p class="time pt70">{{testData.time | formatTime}}</p>
       <div class="ql-container ql-snow">
         <div class="ql-editor" v-html="testData.content"></div>
       </div>

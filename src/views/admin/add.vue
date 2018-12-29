@@ -7,7 +7,7 @@
           </mu-button>
           <span>添加</span>
         </mu-appbar>
-        <mu-form ref="form" :model="formData" class="mu-demo-form pt56">
+        <mu-form ref="form" :model="formData" class="mu-demo-form pt70">
           <mu-form-item label="标题" help-text="" prop="title" :rules="titleRules">
             <mu-text-field v-model="formData.title" prop="title" placeholder="请输入标题"></mu-text-field>
           </mu-form-item>

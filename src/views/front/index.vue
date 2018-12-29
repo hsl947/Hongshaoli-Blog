@@ -22,7 +22,7 @@
       </mu-menu>
     </mu-appbar>
     <!-- @refresh="refresh" :refreshing="refreshing" -->
-    <mu-load-more class="pt56" :loading="loading" @load="load" :loaded-all="finished">
+    <mu-load-more class="pt70" :loading="loading" @load="load" :loaded-all="finished">
       <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
         <mu-list textline="three-line">
           <mu-sub-header>今天</mu-sub-header>
