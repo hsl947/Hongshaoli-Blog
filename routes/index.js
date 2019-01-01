@@ -32,7 +32,7 @@ router.post('/list/detail', function(req, res, next) {
         })
         return;
     }
-    blog.find(req.body, { description: 0, __v: 0 }).then(_data => {
+    blog.find(req.body, { __v: 0 }).then(_data => {
         res.json({
             status: 200,
             message: '查询成功',
@@ -47,7 +47,6 @@ router.post('/list/detail', function(req, res, next) {
 router.post('/admin/list', function(req, res, next) {
     var all = 0;
     blog.count({}, (err, count) => { all = count; });
-
     let page = req.body.page;
     let skip = (page - 1) * req.body.limit;
     blog.find({}, { __v: 0 }).skip(skip).limit(+req.body.limit).then(_data => {

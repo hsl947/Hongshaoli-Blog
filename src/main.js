@@ -21,6 +21,16 @@ Vue.use(Loading);
 import Toast from 'muse-ui-toast';
 Vue.use(Toast);
 
+import FastClick from "fastclick";
+// 去除300ms延迟
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+        FastClick.attach(document.body);
+    },
+    false
+);
+
 //如果是开发环境，启用组件
 if (process.env.NODE_ENV == "development") {
     //针对手机网页的前端开发者调试面板
@@ -46,7 +56,12 @@ Vue.filter('formatTime', (input) => {
     var hour = d.getHours() < 10 ? '0' + d.getHours() : '' + d.getHours();
     var minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : '' + d.getMinutes();
     var seconds = d.getSeconds() < 10 ? '0' + d.getSeconds() : '' + d.getSeconds();
-    return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
+    if (year) {
+        return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
+    } else {
+        return '';
+    }
+
 })
 
 new Vue({

@@ -79,19 +79,21 @@ time,
 mark,
 audio,
 video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  -webkit-margin-start: 0;
-  -webkit-margin-end: 0;
-  font-weight: normal;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    font-weight: normal;
 }
 
+
 /* HTML5 display-role reset for older browsers */
+
 article,
 aside,
 details,
@@ -103,35 +105,35 @@ hgroup,
 menu,
 nav,
 section {
-  display: block;
+    display: block;
 }
 
 body {
-  line-height: 1;
+    line-height: 1;
 }
 
 ol,
 ul,
 li {
-  list-style: none;
+    list-style: none;
 }
 
 blockquote,
 q {
-  quotes: none;
+    quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
-  content: none;
+    content: '';
+    content: none;
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 html {
@@ -162,7 +164,7 @@ html {
 
 html,
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC","Helvetica Neue",STHeiti,"Microsoft Yahei",Tahoma,Simsun,sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
 }
 
 ol,
@@ -182,17 +184,22 @@ body {
     margin: 0 auto;
     -webkit-overflow-scrolling: touch;
 }
-a{
+
+a {
     text-decoration: none;
     outline: none;
     color: #999;
 }
+
 a:hover {
     text-decoration: none
 }
 
+
 /*去掉苹果端的样式*/
-textarea, input {
+
+textarea,
+input {
     -webkit-appearance: none;
     appearance: none;
     border: none;
@@ -200,96 +207,110 @@ textarea, input {
     outline: none;
     resize: none;
 }
+
+
 /*wap端的1像素样式*/
+
 .border-1px,
 .border-1px-t,
 .border-1px-b,
 .border-1px-tb,
 .border-1px-l,
 .border-1px-r {
-  position: relative;
+    position: relative;
 }
+
 .border-1px:before {
-  content: " ";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 200%;
-  border: 1px solid #E5E5E5;
-  color: #E5E5E5;
-  height: 200%;
-  transform-origin: left top;
-  transform: scale(0.5);
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    border: 1px solid #E5E5E5;
+    color: #E5E5E5;
+    height: 200%;
+    transform-origin: left top;
+    transform: scale(0.5);
 }
+
 .border-1px-t:before {
-  content: " ";
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  height: 1px;
-  border-top: 1px solid #E5E5E5;
-  color: #E5E5E5;
-  transform-origin: 0 0;
-  transform: scaleY(0.5);
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #E5E5E5;
+    color: #E5E5E5;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
 }
+
 .border-1px-b:after {
-  content: " ";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 1px;
-  border-bottom: 1px solid #E5E5E5;
-  color: #E5E5E5;
-  transform-origin: 0 100%;
-  transform: scaleY(0.5);
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #E5E5E5;
+    color: #E5E5E5;
+    transform-origin: 0 100%;
+    transform: scaleY(0.5);
 }
+
 .border-1px-tb:before {
-  content: " ";
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  height: 1px;
-  border-top: 1px solid #E5E5E5;
-  color: #E5E5E5;
-  transform-origin: 0 0;
-  transform: scaleY(0.5);
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid #E5E5E5;
+    color: #E5E5E5;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
 }
+
 .border-1px-tb:after {
-  content: " ";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  height: 1px;
-  border-bottom: 1px solid #E5E5E5;
-  color: #E5E5E5;
-  transform-origin: 0 100%;
-  transform: scaleY(0.5);
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #E5E5E5;
+    color: #E5E5E5;
+    transform-origin: 0 100%;
+    transform: scaleY(0.5);
 }
+
 .border-1px-l:before {
-  content: " ";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 1px;
-  bottom: 0;
-  border-left: 1px solid #E5E5E5;
-  color: #E5E5E5;
-  transform-origin: 0 0;
-  transform: scaleX(0.5);
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-left: 1px solid #E5E5E5;
+    color: #E5E5E5;
+    transform-origin: 0 0;
+    transform: scaleX(0.5);
 }
+
 .border-1px-r:after {
-  content: " ";
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 1px;
-  bottom: 0;
-  border-right: 1px solid #E5E5E5;
-  color: #E5E5E5;
-  transform-origin: 100% 0;
-  transform: scaleX(0.5);
+    content: " ";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-right: 1px solid #E5E5E5;
+    color: #E5E5E5;
+    transform-origin: 100% 0;
+    transform: scaleX(0.5);
+}
+
+[v-cloak] {
+    display: none!important;
 }

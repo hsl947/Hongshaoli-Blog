@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-cloak>
       <mu-appbar style="width: 100%;" color="primary">
         <mu-button icon slot="left" onclick="window.history.back()">
           <mu-icon value="arrow_back"></mu-icon>
@@ -7,7 +7,7 @@
         <span v-text="testData.title"></span>
       </mu-appbar>
       <p class="time pt70">{{testData.time | formatTime}}</p>
-      <div class="ql-container ql-snow">
+      <div class="ql-container ql-snow" style="border: none;height: auto;">
         <div class="ql-editor" v-html="testData.content"></div>
       </div>
   </div>
@@ -18,7 +18,9 @@ export default {
   name: "login",
   data() {
     return {
-      testData: {}
+      testData: {
+        time: ''
+      }
     }
   },
   methods: {
@@ -26,6 +28,7 @@ export default {
   },
   created() {
     this.$progress.start();
+    window.scrollTo(0, 0);
   },
   mounted() {
     let param = this.$route.query;
@@ -48,6 +51,5 @@ export default {
   .ql-container.ql-snow{
     font-size: 16px;
     line-height: 28px;
-    border: none;
   }
 </style>

@@ -40,6 +40,14 @@ const router = new VueRouter({
             meta: {
                 title: '添加'
             }
+        },
+        {
+            path: "/edit",
+            name: 'blog_edit',
+            component: resolve => require(["../views/admin/edit"], resolve),
+            meta: {
+                title: '编辑'
+            }
         }
     ]
 });

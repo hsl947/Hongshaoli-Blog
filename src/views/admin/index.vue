@@ -9,12 +9,12 @@
               <td class="is-center">{{scope.row.title.substr(0, 14)}}</td>
               <td class="is-center">{{scope.row.description.substr(0, 14)}}</td>
               <td class="is-center">{{scope.row.time | formatTime}}</td>
-              <td class="is-center"><mu-button color="success">编辑</mu-button></td>
+              <td class="is-center"><mu-button color="success" @click="edit(scope.row._id)">编辑</mu-button></td>
             </template>
           </mu-data-table>
-        </mu-paper>    
+        </mu-paper> 
         <mu-flex justify-content="center">
-          <mu-pagination raised circle :total="total" :current.sync="formData.page" @change="toPage"></mu-pagination>
+          <mu-pagination raised :total="total" :page-size="formData.limit" :current.sync="formData.page" @change="toPage"></mu-pagination>
         </mu-flex>
       </mu-container>
   </div>
@@ -67,6 +67,12 @@ export default {
       this.$router.push({
         path: '/add'
       });
+    },
+    edit(id) {
+      this.$router.push({
+        path: '/edit',
+        query: {_id: id}
+      });
     }
   },
   created() {
@@ -96,5 +102,9 @@ export default {
   }
   .mu-button{
     margin: 10px 0;
+  }
+  .mu-pagination-item.mu-button{
+    overflow: hidden!important;
+    -webkit-tap-highlight-color: transparent!important;
   }
 </style>
