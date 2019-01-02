@@ -55,7 +55,7 @@
         <i class="mu-icon  material-icons" style="user-select: none;">arrow_upward</i>
       </div>
     </mu-button>
-    <div v-if="fullLoading" v-loading="true" data-mu-loading-overlay-color="rgba(255, 255, 255, 0.8)" style="height: 100%;position: fixed;width: 100%;top: 0;bottom: 0;"></div>
+    <div v-if="fullLoading" v-loading="true" data-mu-loading-overlay-color="rgba(255, 255, 255, 0.8)" style="height: 100%;position: fixed;left:0;right: 0;top: 0;bottom: 0;"></div>
   </div>
 </template>
 

@@ -5,7 +5,7 @@
           <mu-button icon slot="left" onclick="window.history.back()">
             <mu-icon value="arrow_back"></mu-icon>
           </mu-button>
-          <span>添加</span>
+          <span>编辑 - {{formData.title}}</span>
         </mu-appbar>
         <mu-form ref="form" :model="formData" class="mu-demo-form pt70">
           <mu-form-item label="标题" help-text="" prop="title" :rules="titleRules">
@@ -21,10 +21,10 @@
                 @change="onEditorChange($event)">
             </quill-editor>
           </mu-form-item>
-          <mu-form-item>
+          <mu-form-item style="white-space: nowrap;">
             <mu-button color="primary" @click="submit">提交</mu-button>
             <mu-button @click="clear">重置</mu-button>
-            <mu-button color="error">删除</mu-button>
+            <mu-button color="error" @click="del">删除</mu-button>
           </mu-form-item>
         </mu-form>
       </mu-container>
@@ -62,15 +62,14 @@ export default {
      submit () {
       this.$refs.form.validate().then((result) => {
         if(result){
-          this.$toast.error('no done!');
-          // this.$axios.post('/admin/add', this.formData).then((_data)=> {
-          //   if(_data.status == 200){
-          //     this.$toast.success(_data.message);
-          //     this.$router.replace({
-          //       path: '/admin'
-          //     });
-          //   }
-          // });
+          this.$axios.post('/admin/edit', this.formData).then((_data)=> {
+            if(_data.status == 200){
+              this.$toast.success(_data.message);
+              this.$router.replace({
+                path: '/admin'
+              });
+            }
+          });
         }
       });
     },
@@ -82,6 +81,23 @@ export default {
       console.log(text)
       console.log('editor change!', html)
       this.formData.content = html;
+    },
+    del () {
+      this.$confirm('确定要删除？', '警告', {
+        type: 'warning'
+      }).then(({ result }) => {
+        if (result) {
+         this.$axios.post('/admin/delete', this.formData).then((_data)=> {
+            if(_data.status == 200){
+              this.$toast.success(_data.message);
+              this.$router.replace({
+                path: '/admin'
+              });
+            }
+          });
+        } else {}
+      });
+      
     }
   },
   created() {
@@ -89,6 +105,7 @@ export default {
   },
   mounted() {
     let param = this.$route.query;
+    this.formData._id = param._id;
     this.$axios.post('/list/detail', param).then((_data)=> {
         this.$progress.done();
         this.formData = _data.data;

@@ -17,6 +17,7 @@
         "mongoose": "^5.4.0",
         "muse-ui": "^3.0.1",
         "muse-ui-loading": "^0.2.0",
+        "muse-ui-message": "^0.2.1",
         "muse-ui-progress": "^0.1.0",
         "muse-ui-toast": "^0.3.0",
         "nodemon": "^1.18.9",
