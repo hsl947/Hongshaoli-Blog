@@ -1,36 +1,35 @@
 <template>
-  <div>
-      <mu-container>
-        <mu-appbar style="width: 100%;" color="primary">
-          <mu-button icon slot="left" onclick="window.history.back()">
-            <mu-icon value="arrow_back"></mu-icon>
-          </mu-button>
-          <span>添加</span>
-        </mu-appbar>
-        <mu-form ref="form" :model="formData" class="mu-demo-form pt70">
-          <mu-form-item label="标题" help-text="" prop="title" :rules="titleRules">
-            <mu-text-field v-model="formData.title" prop="title" placeholder="请输入标题"></mu-text-field>
-          </mu-form-item>
-          <mu-form-item label="描述" prop="description" :rules="descriptionRules">
-              <mu-text-field v-model="formData.description" prop="description" placeholder="请输入文章描述"></mu-text-field>
-          </mu-form-item>
-          <mu-form-item label="内容" prop="content">
-            <quill-editor v-model="formData.content"
-                ref="myQuillEditor"
-                :options="editorOption"
-                @change="onEditorChange($event)">
-            </quill-editor>
-          </mu-form-item>
-          <mu-form-item>
-            <mu-button color="primary" @click="submit">提交</mu-button>
-            <mu-button @click="clear">重置</mu-button>
-          </mu-form-item>
-        </mu-form>
-      </mu-container>
+  <div class="container">
+      <mu-appbar style="width: 100%;" color="primary">
+        <mu-button icon slot="left" onclick="window.history.back()">
+          <mu-icon value="arrow_back"></mu-icon>
+        </mu-button>
+        <span>添加</span>
+      </mu-appbar>
+      <mu-form ref="form" :model="formData" class="mu-demo-form pt70">
+        <mu-form-item label="标题" help-text="" prop="title" :rules="titleRules">
+          <mu-text-field v-model="formData.title" prop="title" placeholder="请输入标题"></mu-text-field>
+        </mu-form-item>
+        <mu-form-item label="描述" prop="description" :rules="descriptionRules">
+            <mu-text-field v-model="formData.description" prop="description" placeholder="请输入文章描述"></mu-text-field>
+        </mu-form-item>
+        <mu-form-item label="内容" prop="content">
+          <quill-editor v-model="formData.content"
+              ref="myQuillEditor"
+              :options="editorOption"
+              @change="onEditorChange($event)">
+          </quill-editor>
+        </mu-form-item>
+        <mu-form-item>
+          <mu-button color="primary" @click="submit">提交</mu-button>
+          <mu-button @click="clear">重置</mu-button>
+        </mu-form-item>
+      </mu-form>
   </div>
 </template>
 
 <script>
+import '@/admin'
 import { quillEditor } from 'vue-quill-editor'
 export default {
   name: "blog_add",

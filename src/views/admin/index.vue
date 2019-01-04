@@ -1,6 +1,6 @@
 <template>
   <div>
-      <mu-container>
+      <!-- <mu-container> -->
         <mu-button @click="add" color="success">添加</mu-button>
         <mu-paper :z-depth="1">
           <mu-data-table stripe :columns="columns" :data="testData">
@@ -13,14 +13,15 @@
             </template>
           </mu-data-table>
         </mu-paper> 
-        <mu-flex justify-content="center">
+        <div class="justify-center">
           <mu-pagination raised :total="total" :page-size="formData.limit" :current.sync="formData.page" @change="toPage"></mu-pagination>
-        </mu-flex>
-      </mu-container>
+        </div>
+      <!-- </mu-container> -->
   </div>
 </template>
 
 <script>
+import '@/admin'
 export default {
   name: "admin_index",
   components: {
@@ -106,5 +107,9 @@ export default {
   .mu-pagination-item.mu-button{
     overflow: hidden!important;
     -webkit-tap-highlight-color: transparent!important;
+  }
+  .justify-center{
+    display: flex;
+    justify-content: center;
   }
 </style>

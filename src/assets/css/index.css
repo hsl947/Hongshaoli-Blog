@@ -37,3 +37,10 @@
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
 }
+.container{
+    width: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-right: auto;
+    margin-left: auto;
+}

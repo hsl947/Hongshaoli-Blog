@@ -7,11 +7,36 @@ import axios from './utils/axios';
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 
-import MuseUI from 'muse-ui';
-import 'muse-ui/dist/muse-ui.css';
-Vue.use(MuseUI);
+import 'muse-ui/lib/styles/base.less';
+import 'muse-ui/lib/styles/theme.less';
+import {
+    AppBar,
+    Button,
+    Divider,
+    Drawer,
+    Icon,
+    List,
+    LoadMore,
+    Paper,
+    SubHeader,
+    Progress,
+    Helpers,
+    Snackbar
+} from 'muse-ui';
 
-import 'muse-ui-progress/dist/muse-ui-progress.css';
+Vue.use(AppBar);
+Vue.use(Button);
+Vue.use(Divider);
+Vue.use(Drawer);
+Vue.use(Icon);
+Vue.use(List);
+Vue.use(LoadMore);
+Vue.use(Paper);
+Vue.use(SubHeader);
+Vue.use(Progress);
+Vue.use(Helpers); 
+Vue.use(Snackbar); 
+
 import NProgress from 'muse-ui-progress';
 Vue.use(NProgress, { color: 'deepOrange500' });
 
@@ -25,15 +50,15 @@ import 'muse-ui-message/dist/muse-ui-message.css';
 import Message from 'muse-ui-message';
 Vue.use(Message, { width: 300 });
 
-import FastClick from "fastclick";
-// 去除300ms延迟
-document.addEventListener(
-    "DOMContentLoaded",
-    function() {
-        FastClick.attach(document.body);
-    },
-    false
-);
+// import FastClick from "fastclick";
+// // 去除300ms延迟
+// document.addEventListener(
+//     "DOMContentLoaded",
+//     function() {
+//         FastClick.attach(document.body);
+//     },
+//     false
+// );
 
 //如果是开发环境，启用组件
 if (process.env.NODE_ENV == "development") {

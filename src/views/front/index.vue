@@ -5,21 +5,6 @@
         <mu-icon value="menu"></mu-icon>
       </mu-button>
       <span>Shaoli's Blog</span>
-      <mu-menu slot="right">
-        <mu-button flat>MENU</mu-button>
-        <mu-list slot="content">
-          <mu-list-item button>
-            <mu-list-item-content>
-              <mu-list-item-title>Menu Item 1</mu-list-item-title>
-            </mu-list-item-content>
-          </mu-list-item>
-          <mu-list-item button>
-            <mu-list-item-content>
-              <mu-list-item-title>Menu Item 2</mu-list-item-title>
-            </mu-list-item-content>
-          </mu-list-item>
-        </mu-list>
-      </mu-menu>
     </mu-appbar>
     <!-- @refresh="refresh" :refreshing="refreshing" -->
     <mu-load-more class="pt70" :loading="loading" @load="load" :loaded-all="finished">
@@ -38,11 +23,14 @@
     </mu-load-more>
     <mu-drawer :open.sync="open" :docked="false" :left="true">
       <mu-list>
-        <mu-list-item button>
-          <mu-list-item-title>Menu Item 1</mu-list-item-title>
+        <mu-list-item button :to="'/'">
+          <mu-list-item-title>首页</mu-list-item-title>
         </mu-list-item>
-        <mu-list-item button>
-          <mu-list-item-title>Menu Item 2</mu-list-item-title>
+        <mu-list-item button :to="'/admin'">
+          <mu-list-item-title>Admin后台首页</mu-list-item-title>
+        </mu-list-item>
+        <mu-list-item button :to="'/#'">
+          <mu-list-item-title>关于我</mu-list-item-title>
         </mu-list-item>
         <mu-list-item  @click="open = false" button>
           <mu-list-item-title>Close</mu-list-item-title>
