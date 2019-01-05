@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./route";
 import axios from './utils/axios';
+import store from "./store";
 
 // require styles
 import 'quill/dist/quill.core.css'
@@ -34,8 +35,8 @@ Vue.use(LoadMore);
 Vue.use(Paper);
 Vue.use(SubHeader);
 Vue.use(Progress);
-Vue.use(Helpers); 
-Vue.use(Snackbar); 
+Vue.use(Helpers);
+Vue.use(Snackbar);
 
 import NProgress from 'muse-ui-progress';
 Vue.use(NProgress, { color: 'deepOrange500' });
@@ -69,6 +70,7 @@ if (process.env.NODE_ENV == "development") {
 
 Vue.config.productionTip = false;
 
+Vue.prototype.$store = store;
 Vue.prototype.$axios = axios;
 Vue.prototype.$extend = function(target, options) {
     for (name in options) {
@@ -94,6 +96,7 @@ Vue.filter('formatTime', (input) => {
 })
 
 new Vue({
+    store,
     router,
     render: h => h(App)
 }).$mount("#app");

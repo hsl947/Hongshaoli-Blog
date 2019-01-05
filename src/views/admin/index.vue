@@ -2,6 +2,7 @@
   <div>
       <!-- <mu-container> -->
         <mu-button @click="add" color="success">添加</mu-button>
+        <mu-button @click="exit" color="error" class="fr">退出登录</mu-button>
         <mu-paper :z-depth="1">
           <mu-data-table stripe :columns="columns" :data="testData">
             <template slot-scope="scope">
@@ -29,6 +30,7 @@ export default {
   },
   data() {
     return {
+      role: this.$store.state.admin_token,
       formData: {
         page: 1,
         limit: 8
@@ -65,14 +67,29 @@ export default {
       this.getData();
     },
     add() {
+      if(this.role == 'guest'){
+        this.$toast.error('访客模式不允许操作！');
+        return;
+      }
       this.$router.push({
         path: '/add'
       });
     },
     edit(id) {
+      if(this.role == 'guest'){
+        this.$toast.error('访客模式不允许操作！');
+        return;
+      }
       this.$router.push({
         path: '/edit',
         query: {_id: id}
+      });
+    },
+    exit() {
+      this.$toast.success('退出登录成功！');
+      this.$store.commit('delToken');
+      this.$router.replace({
+        name: 'blog_login'
       });
     }
   },
@@ -111,5 +128,13 @@ export default {
   .justify-center{
     display: flex;
     justify-content: center;
+  }
+  .fr{
+    float: right;
+  }
+  .fr::after{
+    content: '';
+    display: block;
+    clear: both;
   }
 </style>

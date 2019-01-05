@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var blog = require('../db/front')
+var blog = require('../db/front').blog
+var user = require('../db/front').user
 
 router.get('/test', (req, res, next) => {
     res.send('test api ok!')
@@ -22,7 +23,7 @@ router.post('/list', (req, res, next) => {
     });
 });
 
-//文章列表数据
+//文章详情
 router.post('/list/detail', (req, res, next) => {
     if (!req.body._id) {
         res.json({
@@ -49,7 +50,7 @@ router.post('/admin/list', (req, res, next) => {
     blog.count({}, (err, count) => { all = count; });
     let page = req.body.page;
     let skip = (page - 1) * req.body.limit;
-    blog.find({}, { __v: 0 }).skip(skip).limit(+req.body.limit).then(_data => {
+    blog.find({}, { __v: 0, content: 0 }).skip(skip).limit(+req.body.limit).then(_data => {
         res.json({
             status: 200,
             message: '查询成功',
@@ -63,7 +64,7 @@ router.post('/admin/list', (req, res, next) => {
     });
 });
 
-//admin文章列表数据
+//admin文章添加
 router.post('/admin/add', (req, res, next) => {
     var data = req.body;
     let Blog = new blog(data);
@@ -79,7 +80,7 @@ router.post('/admin/add', (req, res, next) => {
     });
 });
 
-//admin文章列表数据
+//admin文章编辑
 router.post('/admin/edit', (req, res, next) => {
     var data = req.body;
     let target = { _id: data._id };
@@ -95,7 +96,7 @@ router.post('/admin/edit', (req, res, next) => {
     });
 });
 
-//admin文章列表数据
+//admin文章删除
 router.post('/admin/delete', (req, res, next) => {
     var data = req.body;
     let target = { _id: data._id };
@@ -108,6 +109,29 @@ router.post('/admin/delete', (req, res, next) => {
                 message: '删除成功'
             })
         }
+    });
+});
+
+//admin后台登录
+router.post('/admin/login', (req, res, next) => {
+    var data = req.body;
+    user.findOne(data).then(_data => {
+        if (_data) {
+            res.json({
+                status: 200,
+                message: '登录成功',
+                data: {
+                    token: _data.token
+                }
+            })
+        } else {
+            res.json({
+                status: 100,
+                message: '用户名或密码错误！'
+            })
+        }
+    }).catch(err => {
+        console.log(err);
     });
 });
 

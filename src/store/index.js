@@ -4,26 +4,22 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 /**
  * *
- * @param {[use]}  this.store.commit('delToken');
- * @param {[use]}  this.store.commit('setToken', 'xxx');
+ * @param {[use]}  this.$store.commit('delToken');
+ * @param {[use]}  this.$store.commit('setToken', 'xxx');
  */
 export default new Vuex.Store({
-  state: {
-    token: '',
-    num: 0
-  },
-  mutations: {
-    setToken(state, token) {
-        state.token = token;
-        localStorage.setItem('token', token);
+    state: {
+        admin_token: localStorage.getItem('admin_token') || ''
     },
-    delToken(state) {
-        state.token = ''
-        localStorage.setItem('token', '');
+    mutations: {
+        setToken(state, token) {
+            state.admin_token = token;
+            localStorage.setItem('admin_token', token);
+        },
+        delToken(state) {
+            state.admin_token = ''
+            localStorage.setItem('admin_token', '');
+        }
     },
-    addNum(state){
-      state.num++;
-    }
-  },
-  actions: {}
+    actions: {}
 });

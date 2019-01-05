@@ -26,6 +26,7 @@
         <mu-button color="error" @click="del">删除</mu-button>
       </mu-form-item>
     </mu-form>
+    <div v-if="fullLoading" v-loading="true" data-mu-loading-overlay-color="rgba(255, 255, 255, 0.8)" style="height: 100%;position: fixed;left:0;right: 0;top: 0;bottom: 0;"></div>
   </div>
 </template>
 
@@ -52,7 +53,8 @@ export default {
       ],
       contentRules: [
         { validate: (val) => !!val, message: '内容不能为空'}
-      ]
+      ],
+      fullLoading: true
     }
   },
   filters: {
@@ -78,8 +80,8 @@ export default {
       this.formData = {};
     },
     onEditorChange({ quill, html, text }) {
-      console.log(text)
-      console.log('editor change!', html)
+      // console.log(text)
+      // console.log('editor change!', html)
       this.formData.content = html;
     },
     del () {
@@ -107,9 +109,13 @@ export default {
     let param = this.$route.query;
     this.formData._id = param._id;
     this.$axios.post('/list/detail', param).then((_data)=> {
-        this.$progress.done();
         this.formData = _data.data;
         this.title = _data.data.title;
+        let timer = setTimeout(() => {
+          this.$progress.done();
+          this.fullLoading = false;
+          clearTimeout(timer);
+        }, 1000);
     });
   }
 };

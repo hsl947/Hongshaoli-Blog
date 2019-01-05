@@ -9,16 +9,14 @@ var listSchema = new Schema({
 });
 var blogModel = db.model('Blog', listSchema);
 
-// var _data = {
-//     title: '标题'+(Math.random()*1000).toFixed(0),
-//     time: new Date(),
-//     description: '这是文章描述描述' + Math.random().toString(36).substr(2),
-//     content: '这是文章内容' + Math.random().toString(36).substr(2)
-// }
+var userSchema = new Schema({
+    userName: { type: String },
+    password: { type: String },
+    token: { type: String }
+});
+var userModel = db.model('User', userSchema);
 
-// blogModel.create(_data, function (err, res) { // 第一个参数规定为错误信息
-//     console.log(err);
-//     console.log(res);
-// })
-
-module.exports = blogModel;
+module.exports = {
+    blog: blogModel,
+    user: userModel
+};

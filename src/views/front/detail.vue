@@ -10,6 +10,7 @@
       <div class="ql-container ql-snow" style="border: none;height: auto;">
         <div class="ql-editor" v-html="testData.content"></div>
       </div>
+      <div v-if="fullLoading" v-loading="true" data-mu-loading-overlay-color="rgba(255, 255, 255, 0.8)" style="height: 100%;position: fixed;left:0;right: 0;top: 0;bottom: 0;"></div>
   </div>
 </template>
 
@@ -20,7 +21,8 @@ export default {
     return {
       testData: {
         time: ''
-      }
+      },
+      fullLoading: true
     }
   },
   methods: {
@@ -33,8 +35,12 @@ export default {
   mounted() {
     let param = this.$route.query;
     this.$axios.post('/list/detail', param).then((_data)=> {
-        this.$progress.done();
         this.testData = _data.data;
+        let timer = setTimeout(() => {
+          this.$progress.done();
+          this.fullLoading = false;
+          clearTimeout(timer);
+        }, 1000);
     });
   }
 };
