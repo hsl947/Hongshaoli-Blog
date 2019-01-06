@@ -3,6 +3,9 @@ var router = express.Router();
 var blog = require('../db/front').blog
 var user = require('../db/front').user
 
+var multer = require('multer'); //接收图片
+var fs = require('fs'); //操作文件
+
 router.get('/test', (req, res, next) => {
     res.send('test api ok!')
 });
@@ -134,5 +137,18 @@ router.post('/admin/login', (req, res, next) => {
         console.log(err);
     });
 });
+//定义图片上传的临时目录
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads');
+    },
+    filename: function(req, file, cb) {
+        cb(null, Date.now() + '.' + file.originalname.split('.').slice(-1));
+    }
+});
+var upload = multer({ storage: storage })
+router.post('/file/upload', upload.single('img'), function(req, res) {
+    res.json({ url: '/uploads/' + req.file.filename });
+})
 
 module.exports = router;

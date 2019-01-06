@@ -30,7 +30,9 @@
 
 <script>
 import '@/admin'
-import { quillEditor } from 'vue-quill-editor'
+import { quillEditor, Quill } from 'vue-quill-editor'
+import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
+Quill.register('modules/ImageExtend', ImageExtend)
 export default {
   name: "blog_add",
   components: {
@@ -39,7 +41,25 @@ export default {
   data() {
     return {
       editorOption: {
-        placeholder: '请输入内容'
+        placeholder: '请输入内容',
+        modules: {
+          ImageExtend: {
+            loading: true,
+            name: 'img',
+            action: '/api/file/upload',
+            response: (res) => {
+              return res.url
+            }
+          },
+          toolbar: {
+            container: container,
+            handlers: {
+              'image': function () {
+                QuillWatch.emit(this.quill.id)
+              }
+            }
+          }
+        }
       },
       formData: {},
       titleRules: [
