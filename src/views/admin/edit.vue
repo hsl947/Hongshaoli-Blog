@@ -50,7 +50,7 @@ export default {
             name: 'img',
             action: '/api/file/upload',
             response: (res) => {
-              return res.url
+              return res.url;
             }
           },
           toolbar: {
