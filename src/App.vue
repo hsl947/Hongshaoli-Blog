@@ -3,10 +3,15 @@
     <transition :name="transitionName">
         <router-view class="router"></router-view>
     </transition>
+    <pl-lazy time="5000">
+        <canvas-nest></canvas-nest>
+    </pl-lazy>
   </div>
 </template>
 
 <script>
+import plLazy from '@/components/lazy'
+import canvasNest from '@/components/canvas-nest'
 export default {
   name: "app",
   data() {
@@ -14,7 +19,10 @@ export default {
       transitionName: 'fade'
     }
   },
-  components: {},
+  components: {
+    plLazy,
+    canvasNest: resolve => {require(['@/components/canvas-nest'], resolve)}
+  },
   created() {},
   mounted() {},
   methods: {},
@@ -46,4 +54,5 @@ export default {
 .fade-enter, .fade-leave-active {
   opacity: 0
 }
+
 </style>
