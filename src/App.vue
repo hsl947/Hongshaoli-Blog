@@ -3,7 +3,7 @@
     <transition :name="transitionName">
         <router-view class="router"></router-view>
     </transition>
-    <pl-lazy time="5000">
+    <pl-lazy time="3000">
         <canvas-nest></canvas-nest>
     </pl-lazy>
   </div>
