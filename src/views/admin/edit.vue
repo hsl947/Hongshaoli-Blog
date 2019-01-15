@@ -90,6 +90,8 @@ export default {
               this.$router.replace({
                 path: '/admin'
               });
+            }else{
+              this.$toast.error(_data.message);
             }
           });
         }
@@ -115,6 +117,8 @@ export default {
               this.$router.replace({
                 path: '/admin'
               });
+            }else{
+              this.$toast.error(_data.message);
             }
           });
         } else {}
