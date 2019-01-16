@@ -11,7 +11,7 @@
       <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
         <mu-list textline="three-line">
           <mu-sub-header>今天</mu-sub-header>
-          <mu-list-item button :to="'detail?_id='+item._id" v-for="item in testData" :key="item._id">
+          <mu-list-item button @click="toDetail(item._id)" v-for="item in testData" :key="item._id">
             <mu-list-item-content>
               <mu-list-item-title v-text="item.title"></mu-list-item-title>
               <mu-list-item-sub-title v-text="item.description"></mu-list-item-sub-title>
@@ -99,6 +99,12 @@ export default {
       this.formData.skip += this.formData.limit,
       this.loading = true;
       this.getData();
+    },
+    toDetail(id) {
+      this.$router.push({
+        name: 'detail',
+        params: {_id: id}
+      });
     }
   },
   created() {

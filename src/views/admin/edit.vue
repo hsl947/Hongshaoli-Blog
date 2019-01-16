@@ -130,7 +130,7 @@ export default {
     this.$progress.start();
   },
   mounted() {
-    let param = this.$route.query;
+    let param = this.$route.params;
     this.formData._id = param._id;
     this.$axios.post('/list/detail', param).then((_data)=> {
         this.formData = _data.data;

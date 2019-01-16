@@ -81,8 +81,8 @@ export default {
         return;
       }
       this.$router.push({
-        path: '/edit',
-        query: {_id: id}
+        name: 'blog_edit',
+        params: {_id: id}
       });
     },
     exit() {

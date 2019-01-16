@@ -33,7 +33,7 @@ export default {
     window.scrollTo(0, 0);
   },
   mounted() {
-    let param = this.$route.query;
+    let param = this.$route.params;
     this.$axios.post('/list/detail', param).then((_data)=> {
         this.testData = _data.data;
         let timer = setTimeout(() => {
