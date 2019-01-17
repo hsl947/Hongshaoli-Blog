@@ -6,7 +6,7 @@
         </mu-button>
         <span v-text="testData.title"></span>
       </mu-appbar>
-      <p class="time pt70">{{testData.time | formatTime}}</p>
+      <p class="time pt70">{{testData.time | formatTime}} - 洪少利</p>
       <div class="ql-container ql-snow" style="border: none;height: auto;">
         <div class="ql-editor" v-html="testData.content"></div>
       </div>
@@ -57,5 +57,8 @@ export default {
   .ql-container.ql-snow{
     font-size: 16px;
     line-height: 28px;
+  }
+  .ql-snow .ql-editor pre.ql-syntax{
+      font-family: 'Sailec Light', sans-serif;
   }
 </style>

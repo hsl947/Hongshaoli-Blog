@@ -9,9 +9,9 @@
     <!-- @refresh="refresh" :refreshing="refreshing" -->
     <mu-load-more class="pt70" :loading="loading" @load="load" :loaded-all="finished">
       <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
-        <mu-list textline="three-line">
-          <mu-sub-header>今天</mu-sub-header>
-          <mu-list-item button @click="toDetail(item._id)" v-for="item in testData" :key="item._id">
+        <mu-list textline="three-line" v-for="item in testData" :key="item._id">
+          <mu-sub-header>{{item.time | formatTime}}</mu-sub-header>
+          <mu-list-item button @click="toDetail(item._id)">
             <mu-list-item-content>
               <mu-list-item-title v-text="item.title"></mu-list-item-title>
               <mu-list-item-sub-title v-text="item.description"></mu-list-item-sub-title>
@@ -139,9 +139,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped> 
+  .mu-paper{
+    background: none;
+  }
+  .mu-drawer{
+    background: #fff;
+  }
   .mu-list{
     padding-bottom: 0;
+    margin-bottom: 8px;
+    background: #fff;
   }
   .mu-list>li{
     border-bottom: solid 1px rgba(0,0,0,.12);

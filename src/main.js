@@ -4,6 +4,7 @@ import router from "./route";
 import axios from './utils/axios';
 import store from "./store";
 
+import '@/assets/js/highlight/monokai-sublime.min.css'
 // require styles
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
@@ -79,16 +80,20 @@ Vue.prototype.$extend = function(target, options) {
     return target;
 };
 
+function isGt10(n) {
+    return n < 10 ? '0' + n : n;
+}
 Vue.filter('formatTime', (input) => {
     var d = new Date(input);
     var year = d.getFullYear();
-    var month = d.getMonth() + 1;
-    var day = d.getDate() < 10 ? '0' + d.getDate() : '' + d.getDate();
-    var hour = d.getHours() < 10 ? '0' + d.getHours() : '' + d.getHours();
-    var minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : '' + d.getMinutes();
-    var seconds = d.getSeconds() < 10 ? '0' + d.getSeconds() : '' + d.getSeconds();
+    var month = isGt10(d.getMonth() + 1);
+    var day = isGt10(d.getDate());
+    var hour = isGt10(d.getHours());
+    var minutes = isGt10(d.getMinutes());
+    var seconds = isGt10(d.getSeconds());
     if (year) {
-        return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
+        return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes;
+        // return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
     } else {
         return '';
     }
