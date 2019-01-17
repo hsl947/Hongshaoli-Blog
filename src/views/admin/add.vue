@@ -30,7 +30,7 @@
 
 <script>
 import '@/admin'
-import '@/assets/js/highlight/highlight'
+import '@/assets/js/highlight/highlight.pack'
 import { quillEditor, Quill } from 'vue-quill-editor'
 import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
 Quill.register('modules/ImageExtend', ImageExtend)
