@@ -148,6 +148,7 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage })
 router.post('/file/upload', upload.single('img'), function(req, res) {
+    req.connection.setTimeout(100000); //100 seconds
     res.json({ url: '/uploads/' + req.file.filename });
 })
 
