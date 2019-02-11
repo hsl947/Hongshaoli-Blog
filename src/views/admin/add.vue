@@ -102,8 +102,8 @@ export default {
       this.formData = {};
     },
     onEditorChange({ quill, html, text }) {
-      console.log(text)
-      console.log('editor change!', html)
+      // console.log(text)
+      // console.log('editor change!', html)
       this.formData.content = html;
     }
   },

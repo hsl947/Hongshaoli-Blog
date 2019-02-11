@@ -36,6 +36,7 @@ import '@/assets/js/highlight/highlight.pack'
 import { quillEditor, Quill } from 'vue-quill-editor'
 import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
 Quill.register('modules/ImageExtend', ImageExtend)
+
 export default {
   name: "blog_add",
   components: {
