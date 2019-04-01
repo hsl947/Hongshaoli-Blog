@@ -28,6 +28,12 @@ export default {
   methods: {},
   watch:{}
 };
+
+ // 友盟统计添加
+const script = document.createElement("script");
+script.src = "https://s23.cnzz.com/z_stat.php?id=1276871081&web_id=1276871081";
+script.language = "JavaScript";
+document.body.appendChild(script);
 </script>
 
 <style lang="scss">
