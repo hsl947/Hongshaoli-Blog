@@ -55,10 +55,6 @@ export default {
       this.$axios.post('/admin/list', this.formData).then((_data)=> {
           if(!this.total) this.total = _data.count;
           this.testData = _data.data;
-          let timer = setTimeout(() => {
-            this.$progress.done();
-            clearTimeout(timer);
-          }, 1000);
       });
     },
     toPage(page){
@@ -94,7 +90,6 @@ export default {
     }
   },
   created() {
-    this.$progress.start();
   },
   mounted() {
     this.getData();

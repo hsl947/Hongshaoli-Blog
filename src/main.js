@@ -39,12 +39,6 @@ Vue.use(Progress);
 Vue.use(Helpers);
 Vue.use(Snackbar);
 
-import NProgress from 'muse-ui-progress';
-Vue.use(NProgress, { color: 'deepOrange500' });
-
-import Loading from 'muse-ui-loading';
-Vue.use(Loading);
-
 import Toast from 'muse-ui-toast';
 Vue.use(Toast);
 
@@ -52,15 +46,15 @@ import 'muse-ui-message/dist/muse-ui-message.css';
 import Message from 'muse-ui-message';
 Vue.use(Message, { width: 300 });
 
-// import FastClick from "fastclick";
-// // 去除300ms延迟
-// document.addEventListener(
-//     "DOMContentLoaded",
-//     function() {
-//         FastClick.attach(document.body);
-//     },
-//     false
-// );
+import FastClick from "fastclick";
+// 去除300ms延迟
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+        FastClick.attach(document.body);
+    },
+    false
+);
 
 //如果是开发环境，启用组件
 if (process.env.NODE_ENV == "development") {

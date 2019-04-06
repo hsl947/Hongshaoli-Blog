@@ -2,6 +2,11 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
 
+import Loading from 'muse-ui-loading';
+import NProgress from 'muse-ui-progress';
+Vue.use(NProgress, { color: 'deepOrange500' });
+
+Vue.use(Loading);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -65,6 +70,22 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
+
+    const loading = Loading({
+        overlayColor: 'rgba(255, 255, 255, 0.8)',
+        className: 'loading-mask'
+    });
+    let timer1 = setTimeout(() => {
+        loading.close();
+        clearTimeout(timer1);
+    }, 500)
+
+    NProgress.start();
+    let timer2 = setTimeout(() => {
+        NProgress.done();
+        clearTimeout(timer2);
+    }, 800);
+
     if (to.matched.some(r => r.meta.requireAuth)) {
         //这里的requireAuth为路由中定义的 meta:{requireAuth:true}，
         //意思为：该路由添加该字段，表示进入该路由需要登陆的

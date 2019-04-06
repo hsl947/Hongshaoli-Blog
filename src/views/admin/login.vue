@@ -74,10 +74,8 @@ export default {
     }
   },
   created() {
-    this.$progress.start();
   },
   mounted() {
-    this.$progress.done();
     //登录前的路由地址
     if(this.$route.query.redirect){
         this.redirectUrl = this.$route.query.redirect;

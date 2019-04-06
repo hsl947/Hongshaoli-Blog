@@ -6,7 +6,6 @@
       </mu-button>
       <span>Shaoli's Blog</span>
     </mu-appbar>
-    <!-- @refresh="refresh" :refreshing="refreshing" -->
     <mu-load-more class="pt70" :loading="loading" @load="load" :loaded-all="finished">
       <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
         <mu-list textline="three-line" v-for="item in testData" :key="item._id">
@@ -43,7 +42,6 @@
         <i class="mu-icon  material-icons" style="user-select: none;">arrow_upward</i>
       </div>
     </mu-button>
-    <div v-if="fullLoading" v-loading="true" data-mu-loading-overlay-color="rgba(255, 255, 255, 0.8)" style="height: 100%;position: fixed;left:0;right: 0;top: 0;bottom: 0;"></div>
   </div>
 </template>
 
@@ -54,14 +52,12 @@ export default {
     return {
       open: false,
       testData: [],
-      refreshing: false,
       loading: false,
       finished: false,
       formData: {
         skip: 0,
         limit: 20
-      },
-      fullLoading: true
+      }
     }
   },
   components: {
@@ -75,25 +71,8 @@ export default {
             return;
           }
           this.testData = this.testData.concat(_data.data);
-          let timer = setTimeout(() => {
-            this.$progress.done();
-            this.loading = false;
-            this.refreshing = false;
-            this.fullLoading = false;
-            clearTimeout(timer);
-          }, 1000);
+          this.loading = false;
       });
-    },
-    refresh () {
-      this.testData = [];
-      this.formData = {
-        skip: 0,
-        limit: 20
-      };
-      this.finished = false;
-      this.refreshing = true;
-      this.$refs.container.scrollTop = 0;
-      this.getData();
     },
     load () {
       this.formData.skip += this.formData.limit,
@@ -108,10 +87,9 @@ export default {
     }
   },
   created() {
-    this.$progress.start();
+    
   },
   mounted() {
-    // this.fullLoading.close();
     this.getData();
 
     var timer1, timer2; 
@@ -136,7 +114,8 @@ export default {
       }, 50);
     }
 
-    const ws = new WebSocket("ws://hongshaoli.com:8888/");
+    /** 
+    const ws = new WebSocket("ws://127.0.0.1:8888/");
     ws.onopen = ()=> {
         console.log("Opened");
         ws.send("I'm client");
@@ -151,6 +130,7 @@ export default {
     ws.onerror = (err)=> {
         console.log(err);
     };
+    **/
   }
 };
 </script>
