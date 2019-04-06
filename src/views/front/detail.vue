@@ -33,6 +33,7 @@ export default {
     let param = this.$route.params;
     this.$axios.post('/list/detail', param).then((_data)=> {
         this.testData = _data.data;
+        document.title = this.testData.title;
     });
   }
 };
