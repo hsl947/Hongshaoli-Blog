@@ -130,6 +130,13 @@ export default {
     ws.onerror = (err)=> {
         console.log(err);
     };
+    function isGt10(v){
+      return v<10?'0'+v:v;
+    }
+    setInterval(()=>{
+        let now = new Date();
+        ws.send('该消息发送于--'+isGt10(now.getHours()) + ':'+isGt10(now.getMinutes())+ ':'+isGt10(now.getSeconds()));
+    }, 3000)
     **/
   }
 };
