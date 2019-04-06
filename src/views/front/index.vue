@@ -135,6 +135,22 @@ export default {
           clearInterval(timer1);
       }, 50);
     }
+
+    const ws = new WebSocket("ws://hongshaoli.com:8888/");
+    ws.onopen = ()=> {
+        console.log("Opened");
+        ws.send("I'm client");
+    };
+    ws.onmessage = (evt)=> {
+        console.log('----------------');
+        console.log(evt.data);
+    };
+    ws.onclose = ()=> {
+        console.log("Closed");
+    };
+    ws.onerror = (err)=> {
+        console.log(err);
+    };
   }
 };
 </script>
