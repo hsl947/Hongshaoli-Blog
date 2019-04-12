@@ -1,17 +1,15 @@
 const express = require('express');
-const WebSocket = require('ws');
 const http = require('http');
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const io = require('socket.io')(server);
 
 var app = express();
 
-wss.on('connection', (ws) => {
-    ws.on('message', (message) => {
-        console.log('received: %s', message);
-        ws.send(message);
-    });
+io.on('connection', client => {
+    client.on('event', data => { /* … */ });
+    client.on('disconnect', () => { /* … */ });
 });
+
 server.listen(8888, () => {
     console.log('服务器启动成功！');
 });

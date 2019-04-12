@@ -31,9 +31,14 @@ export default {
   },
   mounted() {
     let param = this.$route.params;
+    if(!param._id){
+      let id = localStorage.getItem('blog_id');
+      param._id = id;
+    }
     this.$axios.post('/list/detail', param).then((_data)=> {
-        this.testData = _data.data;
-        document.title = this.testData.title;
+      this.testData = _data.data;
+      document.title = this.testData.title;
+      localStorage.setItem('blog_id', param._id);
     });
   }
 };

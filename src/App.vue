@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <transition :name="transitionName">
-        <router-view class="router"></router-view>
+        <router-view class="router" id="router"></router-view>
     </transition>
     <pl-lazy time="3000">
         <canvas-nest></canvas-nest>

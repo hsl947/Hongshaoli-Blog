@@ -28,6 +28,9 @@
         <mu-list-item button :to="'/admin'">
           <mu-list-item-title>Admin后台首页</mu-list-item-title>
         </mu-list-item>
+        <!-- <mu-list-item button :to="'/chat_login'">
+          <mu-list-item-title>测试聊天</mu-list-item-title>
+        </mu-list-item> -->
         <mu-list-item button target="_blank" href="https://www.hongshaoli.cn/">
           <mu-list-item-title>关于我</mu-list-item-title>
         </mu-list-item>
@@ -87,12 +90,12 @@ export default {
     }
   },
   created() {
-    
+
   },
   mounted() {
     this.getData();
 
-    var timer1, timer2; 
+    var timer1, timer2, timer3; 
     var toTop = document.getElementById("toTop");
     window.onscroll = function () { 
       if (timer1) clearTimeout(timer1);
@@ -104,6 +107,9 @@ export default {
           else { 
             toTop.style.bottom = "-80px"; 
           } 
+          if(scrollTop > 0){
+            sessionStorage.setItem('scrollY', scrollTop);
+          }
       }, 300);
     }
     toTop.onclick = function(){
@@ -114,8 +120,14 @@ export default {
       }, 50);
     }
 
+    let initTop = sessionStorage.getItem('scrollY');
+    timer3 = setTimeout(()=>{
+      window.scroll(0, initTop);
+      clearInterval(timer3);
+    }, 500)
+
     /** 
-    const ws = new WebSocket("ws://127.0.0.1:8888/");
+    const ws = new WebSocket("ws://localhost:8888");
     ws.onopen = ()=> {
         console.log("Opened");
         ws.send("I'm client");
@@ -136,7 +148,7 @@ export default {
     setInterval(()=>{
         let now = new Date();
         ws.send('该消息发送于--'+isGt10(now.getHours()) + ':'+isGt10(now.getMinutes())+ ':'+isGt10(now.getSeconds()));
-    }, 3000)
+    }, 5000)
     **/
   }
 };

@@ -64,7 +64,27 @@ const router = new VueRouter({
             meta: {
                 title: '登录'
             }
-        }
+        },
+        // {
+        //     path: "/chat_login",
+        //     name: 'chat_login',
+        //     component: resolve => require(["../views/chat/login"], resolve),
+        //     meta: {
+        //         title: '聊天登录'
+        //     }
+        // }
+        // ,{
+        //     path: "/404",
+        //     name: "page_404",
+        //     component: resolve => require(["../views/404"], resolve),
+        //     meta: {
+        //         title: '迷路啦！'
+        //     }
+        // }, 
+        // {
+        //     path: "*", // 此处需特别注意置于最底部
+        //     redirect: "/404"
+        // }
     ]
 });
 
