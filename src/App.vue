@@ -24,8 +24,25 @@ export default {
     canvasNest: resolve => {require(['@/components/canvas-nest'], resolve)}
   },
   created() {},
-  mounted() {},
-  methods: {},
+  mounted() {
+    this.initStatic();
+  },
+  methods: {
+    initStatic() {
+      // 百度统计添加
+      var _hmt = _hmt || [];
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3a99bc5fc48167f2e4d0c32bcba6c762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+
+      // 友盟统计添加
+      const ym = document.createElement("script");
+      ym.src = "https://s23.cnzz.com/z_stat.php?id=1276871081&web_id=1276871081";
+      ym.language = "JavaScript";
+      document.body.appendChild(ym);
+    }
+  },
   watch:{}
 };
 </script>
