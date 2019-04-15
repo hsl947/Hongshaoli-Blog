@@ -1,5 +1,6 @@
 # Hongshaoli's Blog
 
+### This is Hong Shaoli’s personal blog, also a personal homepage, usually recording some technical blog posts, etc.
 > First, you have to do it.
 ## Project setup
 ```
@@ -12,6 +13,7 @@ npm install
 ```
 vue ui
 ```
+
 
 > Or you can do like vue-cli2 before
 
