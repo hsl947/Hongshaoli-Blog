@@ -12,14 +12,21 @@ router.get('/test', (req, res, next) => {
 
 //文章列表数据
 router.post('/list', (req, res, next) => {
-    blog.find({}, { content: 0, __v: 0 }).skip(+req.body.skip).limit(+req.body.limit).then(_data => {
+    let page = req.body.page ? +req.body.page : 1;
+    let limit = req.body.limit ? +req.body.limit : 20;
+    let skip = (page - 1) * limit;
+    let ignoreField = {
+        content: 0,
+        __v: 0
+    }
+    blog.find({}, ignoreField).skip(skip).limit(limit).then(_data => {
         res.json({
             status: 200,
             message: '查询成功',
             data: _data,
             count: _data.length,
-            skip: +req.body.skip,
-            limit: +req.body.limit
+            page: page,
+            limit: limit
         })
     }).catch(err => {
         console.log(err);
@@ -36,7 +43,10 @@ router.post('/list/detail', (req, res, next) => {
         })
         return;
     }
-    blog.find(req.body, { __v: 0 }).then(_data => {
+    let ignoreField = {
+        __v: 0
+    }
+    blog.find(req.body, ignoreField).then(_data => {
         res.json({
             status: 200,
             message: '查询成功',
@@ -51,16 +61,21 @@ router.post('/list/detail', (req, res, next) => {
 router.post('/admin/list', (req, res, next) => {
     var all = 0;
     blog.count({}, (err, count) => { all = count; });
-    let page = req.body.page;
-    let skip = (page - 1) * req.body.limit;
-    blog.find({}, { __v: 0, content: 0 }).skip(skip).limit(+req.body.limit).then(_data => {
+    let page = req.body.page ? +req.body.page : 1;
+    let limit = req.body.limit ? +req.body.limit : 20;
+    let skip = (page - 1) * limit;
+    let ignoreField = {
+        content: 0,
+        __v: 0
+    }
+    blog.find({}, ignoreField).skip(skip).limit(limit).then(_data => {
         res.json({
             status: 200,
             message: '查询成功',
             data: _data,
             count: all,
-            page: +page,
-            limit: +req.body.limit
+            page: page,
+            limit: limit
         })
     }).catch(err => {
         console.log(err);

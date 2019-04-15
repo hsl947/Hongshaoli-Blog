@@ -58,7 +58,7 @@ export default {
       loading: false,
       finished: false,
       formData: {
-        skip: 0,
+        page: 1,
         limit: 20
       }
     }
@@ -78,7 +78,7 @@ export default {
       });
     },
     load () {
-      this.formData.skip += this.formData.limit,
+      this.formData.page++,
       this.loading = true;
       this.getData();
     },
@@ -87,6 +87,61 @@ export default {
         name: 'detail',
         params: {_id: id}
       });
+    },
+    initTimer() {
+      var timer1, timer2, timer3; 
+      var toTop = document.getElementById("toTop");
+      window.onscroll = function () { 
+        if (timer1) clearTimeout(timer1);
+        timer1 = setTimeout(function() {
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            if (scrollTop > 300) { 
+              toTop.style.bottom = "16px"; 
+            }else { 
+              toTop.style.bottom = "-80px"; 
+            } 
+            if(scrollTop > 0){
+              sessionStorage.setItem('scrollY', scrollTop);
+            }
+        }, 300);
+      }
+      toTop.onclick = function(){
+        if (timer2) clearTimeout(timer2);
+        timer2 = setTimeout(function() {
+            window.scrollTo(0, 0);
+            clearInterval(timer1);
+        }, 50);
+      }
+
+      let initTop = sessionStorage.getItem('scrollY');
+      timer3 = setTimeout(()=>{
+        window.scroll(0, initTop);
+        clearInterval(timer3);
+      }, 500)
+    },
+    initWebsocket() {
+      const ws = new WebSocket("ws://localhost:8888");
+      ws.onopen = ()=> {
+          console.log("Opened");
+          ws.send("I'm client");
+      };
+      ws.onmessage = (evt)=> {
+          console.log('----------------');
+          console.log(evt.data);
+      };
+      ws.onclose = ()=> {
+          console.log("Closed");
+      };
+      ws.onerror = (err)=> {
+          console.log(err);
+      };
+      function isGt10(v){
+        return v<10?'0'+v:v;
+      }
+      setInterval(()=>{
+          let now = new Date();
+          ws.send('该消息发送于--'+isGt10(now.getHours()) + ':'+isGt10(now.getMinutes())+ ':'+isGt10(now.getSeconds()));
+      }, 5000)
     }
   },
   created() {
@@ -95,61 +150,9 @@ export default {
   mounted() {
     this.getData();
 
-    var timer1, timer2, timer3; 
-    var toTop = document.getElementById("toTop");
-    window.onscroll = function () { 
-      if (timer1) clearTimeout(timer1);
-      timer1 = setTimeout(function() {
-          let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-          if (scrollTop > 300) { 
-            toTop.style.bottom = "16px"; 
-          } 
-          else { 
-            toTop.style.bottom = "-80px"; 
-          } 
-          if(scrollTop > 0){
-            sessionStorage.setItem('scrollY', scrollTop);
-          }
-      }, 300);
-    }
-    toTop.onclick = function(){
-      if (timer2) clearTimeout(timer2);
-      timer2 = setTimeout(function() {
-          window.scrollTo(0, 0);
-          clearInterval(timer1);
-      }, 50);
-    }
+    this.initTimer();
 
-    let initTop = sessionStorage.getItem('scrollY');
-    timer3 = setTimeout(()=>{
-      window.scroll(0, initTop);
-      clearInterval(timer3);
-    }, 500)
-
-    /** 
-    const ws = new WebSocket("ws://localhost:8888");
-    ws.onopen = ()=> {
-        console.log("Opened");
-        ws.send("I'm client");
-    };
-    ws.onmessage = (evt)=> {
-        console.log('----------------');
-        console.log(evt.data);
-    };
-    ws.onclose = ()=> {
-        console.log("Closed");
-    };
-    ws.onerror = (err)=> {
-        console.log(err);
-    };
-    function isGt10(v){
-      return v<10?'0'+v:v;
-    }
-    setInterval(()=>{
-        let now = new Date();
-        ws.send('该消息发送于--'+isGt10(now.getHours()) + ':'+isGt10(now.getMinutes())+ ':'+isGt10(now.getSeconds()));
-    }, 5000)
-    **/
+    //this.initWebsocket();
   }
 };
 </script>
