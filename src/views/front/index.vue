@@ -75,6 +75,7 @@ export default {
           }
           this.testData = this.testData.concat(_data.data);
           this.loading = false;
+          console.log(this.testData);
       });
     },
     load () {

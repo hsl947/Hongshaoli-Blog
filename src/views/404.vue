@@ -736,6 +736,7 @@ export default {
 
 #tips p {
   text-align: center;
+  line-height: 24px;
 }
 
 .links {
