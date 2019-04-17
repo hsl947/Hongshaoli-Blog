@@ -16,7 +16,7 @@ const router = new VueRouter({
             name: 'index',
             component: resolve => require(["../views/front/index"], resolve),
             meta: {
-                title: '首页'
+                title: '首页-洪少利的博客'
             },
             children: []
         },
