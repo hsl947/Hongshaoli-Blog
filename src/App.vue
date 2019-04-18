@@ -48,6 +48,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "assets/css/iconfont.css";
 @import "assets/css/style.css";
 @import "assets/css/index.css";
 #app {

@@ -2,7 +2,7 @@
   <div v-cloak>
       <mu-appbar style="width: 100%;" color="primary">
         <mu-button icon slot="left" onclick="window.history.back()">
-          <mu-icon value="arrow_back"></mu-icon>
+          <i class="iconfont icon-fanhui"></i>
         </mu-button>
         <span v-text="testData.title"></span>
       </mu-appbar>

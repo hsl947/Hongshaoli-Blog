@@ -2,7 +2,7 @@
   <div>
     <mu-appbar style="width: 100%;" color="primary">
       <mu-button icon slot="left" @click="open = !open">
-        <mu-icon value="menu"></mu-icon>
+        <i class="iconfont icon-caidan"></i>
       </mu-button>
       <span>Shaoli's Blog</span>
     </mu-appbar>
@@ -42,7 +42,7 @@
     <mu-button id="toTop" button class="mu-button mu-fab-button mu-inverse">
       <div class="mu-button-wrapper">
         <div class="mu-ripple-wrapper"></div>
-        <i class="mu-icon  material-icons" style="user-select: none;">arrow_upward</i>
+        <i class="iconfont icon-jiantou"></i>
       </div>
     </mu-button>
   </div>
@@ -90,7 +90,7 @@ export default {
       });
     },
     initTimer() {
-      var timer1, timer2, timer3; 
+      var timer1, timer2, timer3;
       var toTop = document.getElementById("toTop");
       window.onscroll = function () { 
         if (timer1) clearTimeout(timer1);
@@ -158,7 +158,7 @@ export default {
 };
 </script>
 
-<style scoped> 
+<style scoped>
   .mu-paper{
     background: none;
   }
@@ -180,13 +180,13 @@ export default {
     padding: 10px 0;
   }
   #toTop{
-    user-select: none; 
-    outline: none; 
-    -webkit-appearance: none; 
-    background-color: #2196f3; 
-    position: fixed; 
-    right: 16px; 
-    bottom: -80px; 
+    user-select: none;
+    outline: none;
+    -webkit-appearance: none;
+    background-color: #2196f3;
+    position: fixed;
+    right: 16px;
+    bottom: -80px;
     z-index: 101;
     min-width:56px;
     transition: all .3s;

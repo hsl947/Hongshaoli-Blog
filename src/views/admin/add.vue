@@ -2,7 +2,7 @@
   <div class="container">
       <mu-appbar style="width: 100%;" color="primary">
         <mu-button icon slot="left" onclick="window.history.back()">
-          <mu-icon value="arrow_back"></mu-icon>
+          <i class="iconfont icon-fanhui"></i>
         </mu-button>
         <span>添加</span>
       </mu-appbar>
@@ -77,7 +77,7 @@ export default {
     }
   },
   filters: {
-   
+
   },
   methods: {
      submit () {
@@ -108,10 +108,10 @@ export default {
     }
   },
   created() {
-    
+
   },
   mounted() {
-    
+
   }
 };
 </script>

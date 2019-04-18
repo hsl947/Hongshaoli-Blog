@@ -2,7 +2,7 @@
   <div class="container">
       <mu-appbar style="width: 100%;" color="primary">
         <mu-button icon slot="left" onclick="window.history.back()">
-          <mu-icon value="arrow_back"></mu-icon>
+          <i class="iconfont icon-fanhui"></i>
         </mu-button>
         <span>登录</span>
       </mu-appbar>
@@ -27,7 +27,7 @@ import '@/admin'
 export default {
   name: "blog_login",
   components: {
-    
+
   },
   data() {
     return {
@@ -42,7 +42,7 @@ export default {
     }
   },
   filters: {
-   
+
   },
   methods: {
      submit () {
