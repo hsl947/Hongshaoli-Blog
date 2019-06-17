@@ -3,29 +3,29 @@
     <transition :name="transitionName">
         <router-view class="router" id="router"></router-view>
     </transition>
-    <pl-lazy time="3000">
-        <canvas-nest></canvas-nest>
-    </pl-lazy>
+    <canvas-nest v-if="lazyLoad"></canvas-nest>
   </div>
 </template>
 
 <script>
-import plLazy from '@/components/lazy'
 import canvasNest from '@/components/canvas-nest'
 export default {
   name: "app",
   data() {
     return {
-      transitionName: 'fade'
+      transitionName: 'fade',
+      lazyLoad: false
     }
   },
   components: {
-    plLazy,
     canvasNest: resolve => {require(['@/components/canvas-nest'], resolve)}
   },
   created() {},
   mounted() {
     this.initStatic();
+    setTimeout(()=>{
+      this.lazyLoad = true;
+    }, 3000);
   },
   methods: {
     initStatic() {

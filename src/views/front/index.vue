@@ -85,8 +85,8 @@ export default {
     },
     toDetail(id) {
       this.$router.push({
-        name: 'detail',
-        params: {_id: id}
+        path: `/detail`,
+        query: {_id: id},
       });
     },
     initTimer() {

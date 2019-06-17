@@ -94,8 +94,16 @@ Vue.filter('formatTime', (input) => {
 
 })
 
+
+import MetaInfo from 'vue-meta-info'
+Vue.use(MetaInfo)
+
 new Vue({
     store,
     router,
     render: h => h(App)
+    //prerender-spa-plugin
+    // ,mounted() {
+    //     document.dispatchEvent(new Event('render-event'))
+    // }
 }).$mount("#app");
