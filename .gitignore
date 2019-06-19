@@ -19,3 +19,4 @@ yarn-error.log*
 *.sln
 *.sw*
 /uploads
+/dist - 副本
