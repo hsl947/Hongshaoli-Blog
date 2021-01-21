@@ -26,7 +26,7 @@
         "prerender-spa-plugin": "^3.4.0",
         "quill-image-extend-module": "^1.1.2",
         "serve-favicon": "^2.5.0",
-        "socket.io": "^2.2.0",
+        "socket.io": "^2.4.0",
         "vconsole": "^3.2.0",
         "vue": "^2.5.17",
         "vue-canvas-nest": "^2.0.0",
